@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flight Path Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <span class="eyebrow">AVIATION SOFTWARE PROJECT</span>
+      <h1>✈ Flight Path Simulator</h1>
+      <p>바람 벡터를 고려한 비행 경로 계산 시뮬레이터</p>
+    </div>
+    <div class="badge">HTML · CSS · JavaScript</div>
+  </header>
+
+  <main>
+    <section class="panel controls">
+      <h2>Flight Parameters</h2>
+
+      <div class="grid">
+        <label>
+          출발지
+          <input id="departure" value="Seoul">
+        </label>
+        <label>
+          목적지
+          <input id="destination" value="Tokyo">
+        </label>
+        <label>
+          비행 방향 (°)
+          <input id="heading" type="number" value="90" min="0" max="359">
+        </label>
+        <label>
+          항공기 속도 (km/h)
+          <input id="airspeed" type="number" value="200" min="1">
+        </label>
+        <label>
+          풍향 (°)
+          <input id="windDirection" type="number" value="0" min="0" max="359">
+        </label>
+        <label>
+          풍속 (km/h)
+          <input id="windSpeed" type="number" value="50" min="0">
+        </label>
+      </div>
+
+      <button id="calculate">경로 계산하기</button>
+      <p class="hint">※ 풍향은 바람이 <b>불어오는 방향</b> 기준입니다. 예: 0° = 북풍.</p>
+    </section>
+
+    <section class="panel results">
+      <h2>Calculation Results</h2>
+      <div class="cards">
+        <div class="result-card">
+          <span>기본 비행 방향</span>
+          <strong id="baseHeading">90°</strong>
+        </div>
+        <div class="result-card">
+          <span>풍향 보정각</span>
+          <strong id="correctionAngle">0°</strong>
+        </div>
+        <div class="result-card">
+          <span>지상 속도</span>
+          <strong id="groundSpeed">200 km/h</strong>
+        </div>
+        <div class="result-card">
+          <span>예상 시간</span>
+          <strong id="flightTime">—</strong>
+        </div>
+      </div>
+      <div id="message" class="message">값을 입력하고 경로를 계산해 보세요.</div>
+    </section>
+
+    <section class="panel visualization">
+      <div class="section-title">
+        <div>
+          <h2>Flight Visualization</h2>
+          <p id="routeText">Seoul → Tokyo</p>
+        </div>
+        <button id="animate" class="secondary">✈ 비행 시뮬레이션</button>
+      </div>
+
+      <div class="sky">
+        <div class="compass north">N</div>
+        <div class="compass east">E</div>
+        <div class="compass south">S</div>
+        <div class="compass west">W</div>
+
+        <div class="route-line"></div>
+        <div id="windArrow" class="wind-arrow">➜</div>
+        <div id="plane" class="plane">✈</div>
+
+        <div class="airport airport-start">
+          <span>●</span>
+          <b id="startLabel">Seoul</b>
+        </div>
+        <div class="airport airport-end">
+          <span>●</span>
+          <b id="endLabel">Tokyo</b>
+        </div>
+
+        <div class="wind-label">WIND</div>
+      </div>
+    </section>
+
+    <section class="panel explanation">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div><b>01</b><span>항공기의 비행 방향과 속도를 설정합니다.</span></div>
+        <div><b>02</b><span>풍향과 풍속을 벡터로 표현합니다.</span></div>
+        <div><b>03</b><span>두 벡터를 합성해 지상 속도와 보정각을 계산합니다.</span></div>
+        <div><b>04</b><span>계산 결과를 비행 경로와 함께 시각화합니다.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Flight Path Simulator · Software-only educational project</footer>
+  <script src="script.js"></script>
+</body>
+</html>
